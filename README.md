@@ -1,2 +1,2 @@
 # ISourcePlayer
-HTML5视频播放器
+HTML5资源播放器,HTML5视频播放器
