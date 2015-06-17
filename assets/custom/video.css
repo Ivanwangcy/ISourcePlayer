@@ -1,0 +1,91 @@
+/**
+ * Created by Ivan on 2015/6/9.
+ */
+.mejs-inner,
+.mejs-inner div,
+.mejs-inner a,
+.mejs-inner span,
+.mejs-inner button,
+.mejs-inner img {
+    margin: 0;
+    padding: 0;
+    border: none;
+    outline: none;
+}
+
+.mejs-container {
+    position: relative;
+    background: #000000;
+}
+
+.mejs-inner {
+    position: relative;
+    width: inherit;
+    height: inherit;
+}
+
+.me-plugin { position: absolute; }
+
+.mejs-container-fullscreen .mejs-mediaelement,
+.mejs-container-fullscreen video,
+.mejs-embed,
+.mejs-embed body,
+.mejs-mediaelement {
+    width: 100%;
+    height: 100%;
+}
+
+.mejs-embed,
+.mejs-embed body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+.mejs-container-fullscreen {
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
+    z-index: 1000;
+}
+
+.mejs-background,
+.mejs-mediaelement,
+.mejs-poster,
+.mejs-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.mejs-poster img { display: block; }
+
+/* 播放控件 定制 */
+.mejs-overlay-play { cursor: pointer; }
+
+.mejs-inner .mejs-overlay-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100px;
+    height: 100px;
+    margin: -50px 0 0 -50px;
+}
+.mejs-controls .mejs-time-rail .mejs-time-handle {
+    display: inline-block;
+    position: absolute;
+    border: none;
+    margin: 0;
+    cursor: pointer;
+    text-align: center;
+    width: 16px;
+    height: 18px;
+    top: -3px;
+    background: url(icon/handle.png);
+
+}
+
+

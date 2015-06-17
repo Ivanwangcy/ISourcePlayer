@@ -1,0 +1,81 @@
+/**
+ * Created by Ivan on 2015/1/23.
+ */
+
+.image-container{
+    width: auto;
+    height: auto;
+    margin: 10px 20px 10px 20px;
+    /*border: 2px solid black;*/
+    background-color: #F5F5F5;
+    border: 8px outset #D2D2D2;
+}
+.gif-container{
+    height: 100%;
+    width: 100%;
+    cursor:move;
+}
+.image-container > canvas{
+    /*height: 100%; width: 100%;*/
+    cursor:move;
+}.gif-container > img{
+    /*height: 100%; width: 100%;*/
+    cursor:move;
+    vertical-align: middle;
+    text-align:center;
+     position: relative;
+
+}
+.image-control{
+    padding: 8px 15px;
+    align-content:center;
+    vertical-align:middle;
+    text-align: right;
+}
+.image-control > #slider{
+    vertical-align: middle;
+    cursor: pointer;
+}
+
+.image-control > a{
+    vertical-align: middle;
+    padding: 5px;
+    cursor: pointer;
+    height: 16px;
+    width: 21px;
+    background-repeat: no-repeat;
+    display: inline-block;
+    background-position: center;
+}
+
+#base{
+    background-image: url(icon/eye.png);
+}
+#base:hover{
+    background-image: url(icon/eyeOn.png);
+}
+
+#fit{
+    background-image: url(icon/fitWidth.gif);
+}
+#fit:hover{
+    background-image: url(icon/fitWidthOn.gif);
+}
+
+#full{
+    background-image: url(icon/full.gif);
+}
+#full:hover{
+    background-image: url(icon/fullOn.gif);
+}
+
+.image-control > #scaleOutput{
+    /*width: 60px;*/
+    /*height: 30px;*/
+    margin: 5px;
+    vertical-align: middle;
+    text-align: center;
+    color: #0000ff;
+    font:12px '微软雅黑';
+    text-shadow: 0.5px 0.5px 1px rgba(100, 140, 250,0.8);
+}
