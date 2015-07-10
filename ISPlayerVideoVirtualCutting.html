@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="screen" content=""/>
+    <title>HTML5 MediaElement</title>
+
+    <link rel="stylesheet" href="assets/js/jquery-ui.css">
+    <link rel="stylesheet" href="assets/js/jquery-ui.theme.css">
+    <link rel="stylesheet" href="assets/local-build/mediaelementplayer.min.css" />
+    <!-- <link rel="stylesheet" href="assets/local-build/mejs-skins.css"/>-->
+    <link rel="stylesheet" href="assets/custom/video.css">
+
+    <script src="assets/js/jquery.js"></script>
+    <script src="assets/js/jquery-ui.js"></script>
+    <script src="assets/local-build/mediaelement-and-player.min.js"></script>
+
+
+</head>
+<body>
+
+<!-- simple single file method -->
+<video width="640" height="360" src="assets/media/echo-hereweare.mp4" type="video/mp4"
+       id="player1" poster="assets/video/echo-hereweare.jpg"
+       controls="controls" preload="none"></video>
+<div id="slider-range"></div>
+<label for="amount">虚拟切割: </label>
+<input type="text" id="amount" readonly style="border: 0; font-weight: bold;color: #f6931f;width:300px;">
+<script>
+
+    $(document).ready(function(){
+        var player, minTime = 0, maxTime = 0;
+        $('video').mediaelementplayer({
+            alwaysShowControls:true,
+            videoVolume:'horizontal',
+            features:['playpause','progress','volume','fullscreen','current','duration','tracks'],
+            success: function (mediaElement, domObject) {
+                player = mediaElement;
+                // add event listener
+                mediaElement.addEventListener('timeupdate', function(e) {
+                    if(mediaElement.currentTime > maxTime){
+                        mediaElement.currentTime = maxTime;
+                        mediaElement.pause();
+                    }
+
+                    if(mediaElement.currentTime < minTime){
+                        mediaElement.currentTime = minTime;
+                    }
+
+                }, false);
+
+                mediaElement.addEventListener('loadedmetadata', function(e) {
+                    maxTime = Math.floor(player.duration);
+                    minTime = 0;
+                    createSlider( Math.floor(player.duration));
+
+                }, false);
+
+                // call the play method
+                mediaElement.play();
+                player.seekable = true;
+
+            }
+        });
+
+        function createSlider(duration){
+            var slider = $("#slider-range").slider({
+                range:true,
+                min:0,
+                max:duration,
+                values:[0,duration],
+                slide:function(event,ui) {
+                    maxTime = ui.values[1];
+                    minTime = ui.values[0];
+                    $("#amount").val("开始时间 : " + mejs.Utility.secondsToTimeCode(minTime) + " - 结束时间 : " + mejs.Utility.secondsToTimeCode(maxTime));
+                }
+            });
+            console.info(slider.slider("values", 0) + "#########" + mejs.Utility.secondsToTimeCode(slider.slider("values", 1)));
+            $("#amount").val("开始时间 : " + mejs.Utility.secondsToTimeCode(slider.slider("values", 0)) + " - 结束时间 : " + (mejs.Utility.secondsToTimeCode(slider.slider("values", 1))));
+
+            slider.width(player.width);
+        }
+
+
+
+    });
+
+</script>
+
+
+
+
+</body>
+</html>

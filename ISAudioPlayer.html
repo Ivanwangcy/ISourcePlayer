@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>HTML5 音频播放器</title>
+    <script type="text/javascript" src="assets/js/jquery-2.1.1.js"></script>
+    <script type="text/javascript" src="assets/local-build/mediaelement-and-player.js"></script>
+    <link href="assets/local-build/mediaelementplayer.css" type="text/css" rel="stylesheet">
+</head>
+<body>
+    <audio id="player" width="100%"
+           src="assets/media/AirReview-Landmarks-02-ChasingCorporate.mp3"></audio>
+    <script type="text/javascript">
+        var player = new MediaElementPlayer("#player",{
+//            audioWidth:800
+//            audioHeight:50
+        });
+        player.setSrc("assets/media/AirReview-Landmarks-02-ChasingCorporate.mp3");
+        player.play();
+        player.seekable = true;
+    </script>
+</body>
+</html>
