@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>使用HTML5画布生成文字放大效果</title>
+    <script src="assets/js/jquery-2.1.1.js"></script>
+</head>
+<style>
+    /*CSS源代码*/
+    body{
+        background:#CFCFCF;
+    }
+    canvas{
+        background: #222;
+    }
+
+</style>
+<body>
+<!-- HTML代码片段中请勿添加<body>标签 //-->
+<div id="container">
+    <canvas id="MyCanvas" width="330" height="400">
+        不支持HTML5画布
+    </canvas>
+</div>
+<script>
+    /*Javascript代码片段*/
+
+    function setTest(fontSize){
+        //獲取Canvas
+        var canvas=document.getElementById('MyCanvas');
+        //獲取繪圖環境類型
+        var context=canvas.getContext('2d');
+        //設置畫筆顏色
+        context.fillStyle="#FF9900";
+        //設置清除画布内容
+        context.clearRect(0,3,330,400);
+        //設置字體大小
+        context.font=fontSize+"px Arial";
+        //設置字體居中
+        context.textAlign='center';
+        //設置字體內容
+        context.fillText("极客标签",canvas.width/2,canvas.height/2);
+    }
+    //設置動畫
+    var i=5;
+    //設置定時器
+    var iCount = setInterval(function(){
+        i=i+5;
+        setTest(i);
+        if(i>30){
+            //結束定時器
+            clearInterval(iCount);
+            return;
+        }
+    }, 100);
+
+</script>
+</body>
+</html>

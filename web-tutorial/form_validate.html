@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <form id="form">
+    <input id="input" type="text" required formnovalidate/>
+    <!-- <input type="number"/> -->
+    <input type="number" formnovalidate/>
+    <input type="email" name="name" value="" formnovalidate/>
+    <input type="submit" value="验证" />
+    <input type="submit" value="不验证" formnovalidate/>
+    <script type="text/javascript">
+      var input1 = document.getElementById("input");
+      // input1.addEventListener("invalid", invalidHandler, false);
+      // input1.willValidate = false;
+      input1.readOnly = true;
+      console.info("input1.willValidate", input1.willValidate);
+      input1.addEventListener("blur",function(){
+        input1.readOnly = true;
+      });
+      input1.addEventListener("focus",function(){
+        input1.readOnly = false;
+      });
+      function invalidHandler(event){
+        console.info("input1.readonly",input1.readonly);
+        event.preventDefault();
+        // form.submit();
+      }
+
+      // form.addEventListener("submit",function(event){
+      //   return true;
+      // });
+    </script>
+</form>
+  </body>
+</html>

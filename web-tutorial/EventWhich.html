@@ -1,0 +1,43 @@
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>charCode/keyCode/which example</title>
+
+    <script type="text/javascript">
+
+        function showKeyPress(evt)
+        {
+            console.info("onkeypress handler: \n"
+                            + "keyCode property: " + evt.keyCode + "\n"
+                            + "which property: " + evt.which + "\n"
+                            + "charCode property: " + evt.charCode + "\n"
+                            + "Character Key Pressed: "
+                            + String.fromCharCode(evt.charCode) + "\n"
+            );
+        }
+
+
+        function keyDown(evt)
+        {
+            alert("onkeydown handler: \n"
+                            + "keyCode property: " + evt.keyCode + "\n"
+                            + "which property: " + evt.which + "\n"
+            );
+        }
+
+
+    </script>
+</head>
+
+<body
+        onmousedown="showKeyPress(event)"
+        onkeypress="showKeyPress(event);"
+        onkeydown="keyDown(event);"
+        >
+
+<p>Please press any key.</p>
+
+
+
+</body>
+</html>

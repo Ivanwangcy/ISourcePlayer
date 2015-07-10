@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <style media="screen">
+      .parent:after{
+        content:'.';
+        display: block;
+        clear: both;
+        height: 0;
+        overflow: hidden;
+        visibility: hidden;
+      }
+
+
+      .parent{
+        width: 810px;
+        margin: auto;
+      }
+      /*侧栏*/
+      .side{
+        float: left;
+        width: 200px;
+      }
+      /*主栏*/
+      .main{
+        float: right;
+        width: 600px;
+      }
+
+
+
+      .title{
+        width: 200px;
+        font: bold 16px '宋体';
+        color: black;
+        line-height: 25px;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+      }
+
+
+
+      .slide{
+        width: 200px;
+        height: 100px;
+        /*必须为相对定位, 作为子元素的定位参照*/
+        position: relative;
+        /*background-color: blue;*/
+      }
+
+      .slide .pointer{
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+      }
+      .slide .pointer i{
+        display: inline-block;
+        width: 10px;
+        height: 10px;
+        /*变成圆形图标*/
+        border-radius: 50%;
+        background-color: black;
+        margin-left: 5px; /*间距为5px*/
+      }
+      /*去除第一个i元素左边距*/
+      .slide .pointer i:first-of-type{
+        margin-left: 0;
+      }
+      /*当前选中项,为白色背景*/
+      .slide .pointer .current{
+        background-color: white;
+      }
+    </style>
+  </head>
+  <body>
+
+    <!-- <div class="parent">
+        <div class="side">侧栏</div>
+        <div class="main">主栏</div>
+    </div> -->
+
+    <!-- <div class="title">标题文字标题文字标题文字标题文字标题文字标题文字标题文字标题文字标题文字</div> -->
+
+    <div class="slide">
+  	<!-- 图片省略 -->
+  	<!-- 以下是指示器 -->
+  	<div class="pointer"><i class="current"></i><i></i><i></i></div>
+  </div>
+
+  </body>
+</html>

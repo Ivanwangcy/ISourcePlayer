@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>HTML5 视频播放器</title>
+    <script src="assets/js/jquery-2.1.1.js" type="text/javascript"></script>
+    <script src="assets/local-build/mediaelement-and-player.js"  type="text/javascript"></script>
+    <link rel="stylesheet" type="text/css" href="assets/local-build/mediaelementplayer.css">
+    <script type="text/javascript" src="Base64Code.js"></script>    <style type="text/css">
+   /**
+    在IFrame 中显示有偏差 , 需要微调
+   */
+    .mejs-controls .mejs-button button {
+        margin: 1px 0px;
+    }
+    .mejs-container .mejs-controls .mejs-time {
+        padding: 5px 3px 0 3px;
+    }
+    .mejs-controls .mejs-time-rail .mejs-time-total{
+        margin: 1px;
+    }
+</style>
+</head>
+<body>
+    <video width="100%" height="100%" id="player"
+           src="assets/media/echo-hereweare.webm" preload="auto"
+           type="video/mp4" controls="controls" poster="assets/media/echo-hereweare.jpg">
+    </video>
+
+<script type="text/javascript">
+    var hrefstr = window.location.href;
+    var currentPath = 'http://content.bitsontherun.com/videos/3XnJSIm4-52qL9xLP.mp4';
+    var teachingActivityDetailsId = 0;
+    var resourceInfoId = 0;
+    var tomcatBaseURL = "http://localhost/";
+    var paramStr = hrefstr.split("?");
+
+    if(paramStr && paramStr.length > 0)
+    {
+        var currentBaseURL = paramStr[0].split("ISVideoPlayer")[0];
+        var videoParam = paramStr[1].split("=");
+
+        /**获取视频资源的URL参数值*/
+        params = base64decode(videoParam[1]);
+        //var paraArr = paramsStr[1].split("&");
+        /** 分号 前面是 资源类型 ，后面是视频地址URL */
+        var tomcatParamsArr = params.split(";");
+
+        if(tomcatParamsArr.length > 0){
+            var resourceInfo = tomcatParamsArr[0];
+            var fileType = "";
+            if(resourceInfo.indexOf("@") > 0){
+                resourceInfoId = resourceInfo.split("@")[0];
+                //alert(resourceInfoId);
+                //fileType = resourceInfo.split("@")[1];
+            }else{
+                //fileType = tomcatParamsArr[0];
+            }
+
+            var tomcatFilePath = tomcatParamsArr[1];
+            var ICourseFilesSplit = tomcatFilePath.split("/ICourseFiles/");
+            tomcatBaseURL = ICourseFilesSplit[0]+"/";
+            currentPath = currentBaseURL + "ICourseFiles/" + ICourseFilesSplit[1];
+
+            if(tomcatParamsArr.length == 3)
+            {
+                teachingActivityDetailsId = tomcatParamsArr[2];
+            }
+        }
+    }
+    //最简单的加载方式
+//   $('#player').mediaelementplayer();
+   var player = new MediaElementPlayer("#player",{
+// if the <video width> is not specified, this is the default
+       defaultVideoWidth: 480,
+       // if the <video height> is not specified, this is the default
+       defaultVideoHeight: 270,
+       // if set, overrides <video width>
+       videoWidth: -1,
+       // if set, overrides <video height>
+       videoHeight: -1,
+       // width of audio player
+       audioWidth: 400,
+       // height of audio player
+       audioHeight: 30,
+       // initial volume when the player starts
+       startVolume: 0.8,
+       // useful for <audio> player loops
+       loop: false,
+       // enables Flash and Silverlight to resize to content size
+       enableAutosize: true,
+       // the order of controls you want on the control bar (and other plugins below)
+       features: ['playpause','progress','current','duration','tracks','volume','fullscreen'],
+       // Hide controls when playing and mouse is not over the video
+       alwaysShowControls: false,
+       // force iPad's native controls
+       iPadUseNativeControls: false,
+       // force iPhone's native controls
+       iPhoneUseNativeControls: false,
+       // force Android's native controls
+       AndroidUseNativeControls: false,
+       // forces the hour marker (##:00:00)
+       alwaysShowHours: false,
+       // show framecount in timecode (##:00:00:00)
+       showTimecodeFrameCount: false,
+       // used when showTimecodeFrameCount is set to true
+       framesPerSecond: 25,
+       // turns keyboard support on and off for this instance
+       enableKeyboard: true,
+       // when this player starts, it will pause other players
+       pauseOtherPlayers: true,
+       // array of keyboard commands
+       keyActions: []
+   });
+
+    player.setSrc("assets/media/big_buck_bunny.mp4");
+    player.play();
+    player.seekable = true;
+
+
+    /**
+     * 与服务器端交互功能, 存取视频播放时长, 加载上次播放时长
+     * */
+    /**
+     * 服务器方法
+     * */
+    setInterval(updateResActComProAction,1000);
+
+
+    /**
+     * 保存视频资源观看时长
+     * */
+    function saveResourceBrowserDuration()
+    {
+        var requestVars = {};
+        requestVars.resourceInfoId = resourceinfoid;
+        requestVars.lastViewLocation = Math.round(player.currentTime());
+        var url = tomcatBaseURL + "/saveResourceBrowserDuration.action";
+        sendServer(requestVars,url,loaderSuccessfulHandler);
+    }
+
+    /**
+     * 更新教学活动视频资源观看时长
+     * */
+    function updateResActComProAction()
+    {
+        var requestVars = {teachingActivityDetailsId:teachingActivityDetailsId,
+            lastViewLocation:Math.round(player.currentTime())
+            };
+//        requestVars.teachingActivityDetailsId = teachingActivityDetailsId;
+        //	 requestVars.lastViewLocation = player.getCurrentCaptions();
+//        requestVars.lastViewLocation = Math.round(player.currentTime());
+        var url = tomcatBaseURL + "/updateResActComProAction.action";
+        sendServer(requestVars,url,loaderSuccessfulHandler);
+    }
+
+    /**
+     * 服务器方法
+     *
+     * */
+    function getLastViewLocationInfo(){
+        var requestVars = {teachingActivityDetailsId:teachingActivityDetailsId};
+//      requestVars.teachingActivityDetailsId = teachingActivityDetailsId;
+        var url = tomcatBaseURL + "/getLastViewLocationInfo.action";
+        sendServer(requestVars,url,lastTimeLocation_resultHandler);
+
+    }
+
+
+    /**
+     *  请求服务器端
+     * */
+    function sendServer(requestVars,url,callback){
+        $.post(url,requestVars,callback);
+    }
+
+    /**
+     * 读取时长后, 设置当前开始播放时间
+     * */
+    function lastTimeLocation_resultHandler(data){
+        player.setCurrentTime(data);
+    }
+
+    /**
+     *
+     * 定时请求服务器端
+     *
+     */
+    function loaderSuccessfulHandler(){
+        setInterval(updateResActComProAction,1000);
+    }
+ </script>
+</body>
+</html>

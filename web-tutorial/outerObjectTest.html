@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>内置对象作业</title>
+  </head>
+  <body>
+    <script type="text/javascript">
+
+      /**
+       * [randomInteger 随机生成0~radix-1 的整数, 默认生成0~999之间的整数]
+       * @param  {[int]} radix [int, 参数指定生成最大随机数的基数, 默认 1000]
+       * @return {[int]}       [随机整数]
+       */
+      function randomInteger(radix){
+        radix = radix || 1000;
+        return Math.floor(Math.random()*radix);
+      }
+
+      Function.prototype.bind = null;
+      /**
+       * 网上的例子
+       * [if description]
+       * @param  {[type]} !Function.prototype.bind [description]
+       * @return {[type]}                          [description]
+       */
+    // if(!Function.prototype.bind){
+    //   Function.prototype.bind= function(obj){
+    //     //保存调用bind的方法
+    //     console.info(obj);
+    //     var self = this;
+    //     //保存调用bind时的参数
+    //     var selfArg = Array.prototype.slice.call(arguments,1);
+    //     //当使用new方式来调用bind后的方法,需要使用Bridge来继承self的原型;
+    //     var Bridge = function(){};
+    //     Bridge.prototype = self.prototype;
+    //     //创建新的函数
+    //     var _self = function(){
+    //       //调用新函数时,将调用新函数时传入的参数和bind时的参数合并
+    //       var newArg = selfArg.concat(Array.prototype.slice.call(arguments));
+    //       //返回执行self方法,改变指针和参数
+    //       //如果是使用new方法调用,那么this上下文就是实例化以后的实例,而不是bind时传入的obj,这个暂时想不到有什么例子需要这样调用
+    //       return self.apply(this instanceof Bridge? this : obj||{} , newArg);
+    //     };
+    //      _self.prototype = new Bridge();
+    //     //返回新创建的函数
+    //     return _self;
+    //   }
+    // }
+
+    if(!Function.prototype.bind){
+     Function.prototype.bind = function(obj){
+       if(typeof this !== "function"){
+         //bind 函数的调用者必须是一个函数
+         throw new TypeError( typeof this + " is not a function!");
+       }
+       var self = this,//保存调用bind的函数
+           selfParams = Array.prototype.slice.call(arguments, 1),
+           //保存调用时的参数 且 需要给self传递的参数, arguments[0] == obj 绑定的新函数
+           bridge = function(){}, // 如果用new来调用bind的返回函数,需要继承self原型,转接到bindFn
+           bindFn = function(){//创建新函数
+             return self.apply(this instanceof bridge && obj
+                 ? this : obj || window,
+                 selfParams.concat(Array.prototype.slice.call(arguments)));
+           };
+           bridge.prototype = this.prototype;
+           bindFn.prototype = new bridge();//继承bridge对象
+           return bindFn;
+     }
+   }
+
+
+      // var i = 1;
+      // while(i != 0){
+      //   i = randomInteger();
+      //   console.info(i);
+      //   }
+        // Function.prototype.bind = null;
+      function move(x, y) {
+          this.x += x;
+          this.y += y;
+      }
+      var point = {x:1, y:2};
+      var pointmove = move.bind(point, 2, 2);
+      var newpoint = new pointmove({x:1, y:2});
+      pointmove(); // {x:3, y:4}
+      console.info(point);
+      pointmove(20,20); // {x:5, y:6}
+      console.info(point);
+      pointmove(20,20); // {x:5, y:6}
+      console.info(point);
+      pointmove(20,20); // {x:5, y:6}
+      console.info(point);
+      pointmove(20,20); // {x:5, y:6}
+      console.info(point);
+      pointmove(20,20); // {x:5, y:6}
+      console.info(point);
+
+      // var point2 = {x:1, y:2};
+      // var pointmove2 = move.bind(point2, 2, 2);
+      // pointmove2(); // {x:3, y:4}
+      // console.info(point2);
+      // pointmove2(20,20); // {x:5, y:6}
+      // console.info(point2);
+    </script>
+  </body>
+</html>

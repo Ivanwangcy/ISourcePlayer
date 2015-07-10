@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="assets/js/jquery-2.1.1.js"></script>
+    <script src="assets/custom/jquery.fullscreen.js"></script>
+    <style type="text/css">
+        .test:-webkit-full-screen{
+            min-width: 800px;
+            min-height:600px;
+            vertical-align:middle;
+            text-align:center;
+            line-height:600px;
+            background-color: #7FC9FA;
+            cursor: pointer;
+            color: red;
+            font-size: 25px;
+        }
+        .test:-moz-full-screen{
+            min-width: 800px;
+            min-height:600px;
+            vertical-align:middle;
+            text-align:center;
+            line-height:600px;
+            background-color: #7FC9FA;
+            cursor: pointer;
+            color: red;
+            font-size: 25px;
+        }
+        .test{
+            background-color: #c2ccd1;
+            margin: 5px;
+            text-align: center;
+            cursor: pointer;
+            line-height: 50px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="test">Hello FullScreen! Click me!(first Div)</div>
+<div class="test">Hello FullScreen! Click me!(second Div)</div>
+<div class="test">Hello FullScreen! Click me!(third Div)</div>
+<script type="text/javascript">
+    $(".test").click(function(){
+        $(this).toggleFullScreen();
+    });
+
+</script>
+</body>
+</html>

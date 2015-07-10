@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <!-- 作业一 -->
+
+    <!-- 标题 -->
+    <h3>图书畅销榜</h3>
+    <ol>
+      <!-- 鼠标滑入有title提示和手型指针, 是可以点击的超链接(a标签) -->
+      <li><a href="#" title="当我足够好，才会遇见你">当我足够好，才会遇见你</a></li>
+      <li><a href="#" title="皮囊">皮囊</a></li>
+      <li><a href="#" title="李光耀论中国与世界">李光耀论中国与世界</a></li>
+      <li><a href="#" title="乖，摸摸头">乖，摸摸头</a></li>
+      <li><a href="#" title="男女内参">男女内参</a></li>
+    </ol>
+
+    <!-- 作业二 -->
+    <table>
+      <!-- 图中可以看出是粗体, 是表格标题有强调作用采用strong标签 -->
+      <caption><strong>运费详情</strong></caption>
+      <thead>
+        <tr>
+          <th>区域</th>
+          <th>寄达地</th>
+          <th>首重(元/1000g)</th>
+          <th>续重(元/1000g)</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr>
+            <th rowspan="2">一区</th>
+            <td>浙江、上海、江苏</td>
+            <td>6</td>
+            <td>1</td>
+          </tr>
+          <tr>
+            <td>江西、安徽</td>
+            <td>7</td>
+            <td>1</td>
+          </tr>
+          <tr>
+            <th>二区</th>
+            <td>吉林、黑龙江、云南</td>
+            <td>10</td>
+            <td>6</td>
+          </tr>
+          <tr>
+            <th>三区</th>
+            <td>新疆、西藏</td>
+            <td>15</td>
+            <td>10</td>
+          </tr>
+      </tbody>
+    </table>
+
+    <!-- 作业三  align="middle"  -->
+    <form action="#" method="post">
+      <div>
+        <label for="portrait">头像</label>
+        <input id="portrait" type="file" name="portrait">
+      </div>
+      <div>
+        <label for="nickname">昵称</label>
+        <input id="nickname" type="text" name="nickname">
+      </div>
+      <div>
+        <label for="education">学历</label>
+        <select id="education" name="education" value="0">
+          <option value="0">大专</option>
+          <option value="1">本科</option>
+        </select>
+      </div>
+      <div>
+        <label>性别</label>
+        <input type="radio" name="sex" id="male" value="0" checked><label for="male">男</label>
+        <input type="radio" name="sex" id="female" value="1"><label for="female">女</label>
+      </div>
+      <div>
+        <label>爱好</label>
+        <input type="checkbox" name="interest" id="movie" value="0" checked><label for="movie">电影</label>
+        <input type="checkbox" name="interest" id="shoot" value="1"><label for="shoot">摄影</label>
+        <input type="checkbox" name="interest" id="music" value="2"><label for="music">音乐</label>
+        <input type="checkbox" name="interest" id="read" value="3" checked><label for="read">阅读</label>
+      </div>
+      <div>
+        <label for="signature">签名</label>
+        <textarea id="signature" name="signature" rows="5" cols="40"></textarea>
+      </div>
+      <input type="submit" name="save" value="保存">
+    </form>
+  </body>
+</html>

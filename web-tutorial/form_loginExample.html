@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>网易云音乐登录框</title>
+    <style media="screen">
+      body, input, legend, button{ padding: 0;margin: 0;font: 16px "微软雅黑"; }
+      .m-form{ margin: 150px auto;width: 325px;border: 1px solid #ddd; }
+      .m-form>legend{ text-indent: 1rem; line-height: 30px; width: 100%; color: white; background-color: #2d2d2d;
+      }
+      .m-form>fieldset{border: none;padding: 20px;}
+      .m-form div{margin: 20px;}
+      .m-form button{border: 1px solid #ddd;width: 100%;cursor: pointer;background-color: #2d7dca;color: white;height: 30px;}
+      .m-form .tip{padding-left:6em;font-size:12px;color:#C0C0C0;}
+      .m-form .u-txt{width: 160px;padding: 3px;border:1px solid #aaa;}
+      .m-form .j-error{color: red; border-color: red;}
+      .m-form .j-disabled{cursor: default;background-color: #ddd;}
+    </style>
+  </head>
+  <body>
+    <form class="m-form" action="/login" method="post" id="loginForm" autocomplete="off" target="result">
+      <legend>手机号码登录</legend>
+      <fieldset>
+         <div class="msg" id="message"></div>
+        <div>
+          <label for="mobile">手机号：</label>
+          <input id="mobile" type="tel" name="mobile" maxlength="11" required pattern="^1[0-9]{10}$" class="u-txt">
+          <span class="tip">11位数字手机号码</span>
+        </div>
+        <div>
+          <label for="password">密&nbsp;&nbsp;&nbsp;码：</label>
+          <input id="password" type="password" name="name" class="u-txt" value="">
+          <span class="tip">密码为6-16位字符</span>
+        </div>
+        <div> <button id="loginBtn">登&nbsp;&nbsp;&nbsp;&nbsp;录</button></div>
+      </fieldset>
+      <iframe name="result" id="result" style="display:none;"></iframe>
+    </form>
+    <script type="text/javascript">
+      (function(){
+        var form = document.forms.loginForm,
+            mobile = document.getElementById("mobile"),
+            password = document.getElementById("password");
+
+        var addEvent = document.addEventListener ?
+            function(elem, type, listener, useCapture) {
+              elem.addEventListener(type, listener, useCapture);
+              } : function(elem, type, listener, useCapture) {
+                elem.attachEvent('on' + type, listener);
+              };
+
+        function invalidInput(node, msg){
+          var msg = "";
+          if(node == mobile && !node.validity.valid)
+                msg = "请输入正确的手机号码";
+          if(node == password && node.value.length < 6)
+             msg = "密码长度必须大于6位";
+          if(msg){
+            // showMessage('j-err',msg);    // 略
+            node.classList.add("j-error");
+            node.focus();
+            return false;
+          }
+          return true;
+        }
+        function clearInvalid(node){
+
+        	// showMessage();    // 略
+        	node.classList.remove('j-error');
+        }
+
+        function disableSubmit(disabled){
+        	form.loginBtn.disabled = disabled;
+        	var method = !disabled?'remove':'add';
+          form.loginBtn.classList[method]('j-disabled');
+        }
+
+        function validateHandler(event){
+          var e = event || window.event;
+          var target = e.target || e.srcElement;
+            // event.preventDefault();
+            invalidInput(target);
+        }
+
+        addEvent(mobile, "blur", validateHandler);
+        addEvent(password, "blur", validateHandler);
+        addEvent(form,'input',function(event){
+              	  // 还原错误状态
+              	  clearInvalid(event.target);
+                  // 还原登录按钮状态
+                  disableSubmit(false);
+                }
+              );
+
+        addEvent(form,'submit',function(event){
+                  if(!invalidInput(mobile)) return;
+                  if(!invalidInput(password)) return;
+                  // 禁用提交按钮
+                  disableSubmit(true);
+              });
+      })();
+    </script>
+  </body>
+</html>

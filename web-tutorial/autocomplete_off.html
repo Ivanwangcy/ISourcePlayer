@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <!-- autocomplete="off" -->
+    <form autocomplete="on" id="search_form" method="post" action="#">
+    <!-- <input type="text" style="display:none" /> -->
+     <!-- autocomplete="off" -->
+    <input type="text" />
+    <input type="password" name="name" value="">
+    <button type="submit" name="button">提交</button>
+
+
+</form>
+
+<!-- 解决方案 -->
+<form autocomplete="off" id="search_form" method="post" action="">
+  <input type="text" style="display:none" />
+  <input autocomplete="off" type="text" />
+</form>
+
+<!-- 爱课程autocomplete="off"示例 -->
+<form action="login.action" autocomplete="off" method="post">
+    <!-- 增加一个相同name属性的input元素,设置display=none作为自动填充项,表单元素就不会自动填充了 -->
+  <input name="loginName" type="text" style="display:none;" />
+  <input autocomplete="off" name="loginName" id="loginName" type="text" />
+  <!-- 其它表单元素.... -->
+</form>
+  </body>
+</html>

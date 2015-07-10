@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>视频展示</title>
+	<meta name="google" value="notranslate" />         
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script type="text/javascript" src="jwplayer.js"></script>
+	 <style type="text/css" media="screen"> 
+            html, body  { height:100%; }
+            body { margin:0; padding:0; overflow:auto; text-align:center; 
+                   background-color: #ffffff; }   
+            object:focus { outline:none; }
+    </style>
+	<script type="text/javascript">
+			
+        </script>
+</head>
+<body>
+<div id="container"></div>
+<script type="text/javascript">
+
+    jwplayer("container").setup({
+        //file: 'http://content.bitsontherun.com/videos/3XnJSIm4-52qL9xLP.mp4',
+		<!-- file: currentPath, -->
+		<!-- -->
+        //image: 'http://content.bitsontherun.com/thumbs/3XnJSIm4-480.jpg', 
+		//file: 'D:\\KwDownload\\Temp\\0B6893B3B6D76817.mp3', 
+		//width:"900",
+		  //aspectratio: '16:9',
+		//streamer:"start",
+		//startparam: "start",
+		//provider:"video",
+		     height: 622,    
+                width:1104,    
+                stretching : 'fill',    
+                streamer:"start",    
+                provider:"http", 
+		file: 'sssss.mp4',
+        autostart: 'false',
+        repeat: 'true',
+		primary: 'html5'
+        //primary: 'flash'
+    });
+</script>
+
+
+</body>
+</html>

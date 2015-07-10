@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>DOM 练习</title>
+  </head>
+  <body>
+<div>欢迎<a href="/profile">Jerry</a>同学!</div>
+<script type="text/javascript">
+
+
+/**
+ * [if 在不包含此属性的浏览器中模拟Element.children属性
+ * 由于是Element子节点是类动态数组, 实时更新不能用传统的for循环,
+ * 如: for (var i = 0; i < element.childNodes.length; i++)//不建议使用]
+ * @param  {[无]} !document.documentElement.children [description]
+ * @return {[Array]} [返回的是静态的数组, 而不是实时的NodeList/HTMLCollection对象, 无法达到原生效果]
+ */
+  if(!document.documentElement.children){
+    //给 Element 添加原型属性 children "__defineGetter__"非标准的Getter方法,但是浏览器几乎都适用
+    Element.prototype.__defineGetter__("children",function(){
+      var kids = [];
+      for(var child = this.firstChild; child != null; child = child.nextSibling){//
+        if(child.nodeType === 1) kids.push(child);
+      }
+      return kids;//
+    });
+  }
+</script>
+  </body>
+</html>

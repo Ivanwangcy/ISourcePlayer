@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>图片查看器</title>
+    <link rel="stylesheet" href="assets/custom/viewer.css" type="text/css">
+    <script type="text/javascript" src="assets/js/jquery-2.1.1.js"></script>
+
+</head>
+<body>
+<div class="image-container" id="image-container">
+</div>
+    <script type="text/javascript" src="assets/custom/imageViewer.js"></script>
+
+    <script type="text/javascript">
+        var image = new Image();
+        image.src = "assets/media/005.gif";
+//        image.src = "assets/media/少女时代.jpg";
+        var imageViewer = $("#image-container").imageViewer(image,{
+            scale: 1.00,
+            maxScale: 4.0,
+            minScale: 0.1,
+            step: 0.01
+        });
+
+    </script>
+</body>
+</html>

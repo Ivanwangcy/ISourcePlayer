@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>四宫格布局</title>
+    <style>
+      body{
+        margin: 0px;
+        padding: 0px;
+      }
+
+      /* 第四种采用float浮动布局 */
+      .gridLayout{
+        width: 100%;
+        height: 600px;
+      }
+      .topleft,.topright,.bottomleft,.bottomright{
+        background-color: rgb(46, 142, 196);
+        background-clip: content-box;
+        float: left;
+        height: 50%;
+        width: 50%;
+        padding: 5px;
+        box-sizing: border-box;
+      }
+
+    </style>
+  </head>
+  <body>
+    <div class="gridLayout">
+      <div id="topleft" class="topleft"> <p> topleft </p> </div>
+      <div id="topright" class="topright"> <p> topright </p> </div>
+      <div id="bottomleft" class="bottomleft"> <p> bottomleft </p> </div>
+      <div id="bottomright" class="bottomright"> <p> bottomright </p> </div>
+    </div>
+  </body>
+</html>

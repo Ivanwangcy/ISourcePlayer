@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>封装一个可支持任意级选择器级联的控件</title>
+    <script type="text/javascript">
+    var data =[
+                {
+                    text:'第一章 1',
+                    value:'1',
+                    list:[
+                        {
+                            text:'第一节 1.1',
+                            value:'1.1',
+                            list:[
+                                {
+                                    text:'第1小节 1.1.1',
+                                    value:'1.1.1',
+                                    list:[]
+                                },
+                            ]
+                        },
+                    ]
+                },
+                {
+                    text:'第二章 2',
+                    value:'2',
+                    list:[
+                        {
+                            text:'第一节 2.1',
+                            value:'2.1',
+                            list:[
+                                {
+                                    text:'第1小节 2.1.1',
+                                    value:'2.1.1',
+                                    list:[]
+                                },
+                            ]
+                        },
+                        {
+                            text:'第二节 2.2',
+                            value:'2.2',
+                            list:[
+                                {
+                                    text:'第1小节 2.2.1',
+                                    value:'2.2.1',
+                                    list:[]
+                                },
+                            ]
+                        }
+                    ]
+                },
+                {
+                      text:'第三章 3',
+                      value:'3',
+                      list:[]
+                }
+              ];
+    </script>
+  </head>
+  <body>
+    <form action="#" id="content">
+       <select name="one" id="first">
+           <option value="select">--</option>
+       </select>
+       <select name="two" id="second">
+           <option value="select">--</option>
+       </select>
+       <select name="three" id="third">
+           <option value="select">--</option>
+       </select>
+   </form>
+    <script type="text/javascript">
+      var selectList = document.getElementsByTagName("select");
+
+      // 这里selectList为依次级联的选择器元素列表，如[select1,select2,select3,...]
+      function cascade(selectList, data){
+
+        //填充级联数据
+        var fillSelect = function (select, list){
+            if(!select) return;
+            for(var i = select.length - 1; i > 0; i--){
+              select.remove(i);
+            }
+            list && list.forEach(function(data){
+              var option = new Option(data.text, data.value);
+              select.add(option);
+            });
+          };
+
+        //获取级联数据
+        var getCascadeData = function(data, value){
+            var result = null;
+            function getResult(data){
+              if(!data || data.length == 0) return;
+              data.forEach(function(child){
+                  if(child.value == value) result = child;
+                  if(!result) getResult(child.list);
+              });
+            }
+            getResult(data);
+            return result;
+          };
+
+        //首先加载一级下拉菜单
+        fillSelect(selectList[0], data);
+
+        //为级联下拉菜单添加change事件
+        for(var i = 0, select;select = selectList[i]; i++){
+          select.addEventListener('change', function(event){
+          var value = event.target.value,
+                      list = getCascadeData(data, value).list || [];
+              fillSelect(event.target.nextElementSibling, list);
+            });
+        }
+      }
+      //调用方法
+      cascade(selectList, data);
+    </script>
+  </body>
+</html>

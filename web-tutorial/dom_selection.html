@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>封装一个输入框通用的光标操作接口</title>
+  </head>
+  <body>
+    <input id="input" type="text" name="name" value="封装一个输入框通用的光标操作接口，使得在传入输入框和光标的起始、结束位置后，可以将输入框中从起始位置到结束位置的内容选中，如
+">
+    <input id="password" type="password" name="name" value="封装一个输入框通用的光标操作接口，使得在传入输入框和光标的起始、结束位置后，可以将输入框中从起始位置到结束位置的内容选中，如">
+    <div id="div">
+
+    </div>
+    <textarea id="textarea" name="name" rows="8" cols="40">
+      封装一个输入框通用的光标操作接口，使得在传入输入框和光标的起始、结束位置后，可以将输入框中从起始位置到结束位置的内容选中，如封装一个输入框通用的光标操作接口，使得在传入输入框和光标的起始、结束位置后，可以将输入框中从起始位置到结束位置的内容选中，如封装一个输入框通用的光标操作接口，使得在传入输入框和光标的起始、结束位置后，可以将输入框中从起始位置到结束位置的内容选中，如封装一个输入框通用的光标操作接口，使得在传入输入框和光标的起始、结束位置后，可以将输入框中从起始位置到结束位置的内容选中，如
+    </textarea>
+    <button id="selectionBtn" type="button" name="button">选中文本</button>
+    <script type="text/javascript">
+      function selection(input, start, end){
+        if(!input.setSelectionRange)
+          throw new TypeError("不是有效的输入框!");
+        input.setSelectionRange(start, end);
+      }
+
+      var input = document.getElementById("input");
+      var textarea = document.getElementById("textarea");
+      var div = document.getElementById("div");
+      var password = document.getElementById("password");
+      selectionBtn.addEventListener("click", function(event){
+        selection(password, {a:"aaaa"}, 20000);
+      });
+    </script>
+  </body>
+</html>
