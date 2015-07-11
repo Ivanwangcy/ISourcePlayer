@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>dataset兼容实现</title>
+	<style>
+
+.m-nav{font-size: 14px;}
+.m-nav li{width: 100px;padding-left: 20px;}
+
+		li{cursor: default;line-height: 1.8;}
+		table{border-collapse: collapse;}
+		th, td, caption{padding: 10px;border: 1px solid #ddd;font-size: 14px;}
+		th{color: #999;}
+		caption{font-size: 20px;font-weight: bold;border-bottom: none;}
+		#card{position: absolute;top: 10px;left: 150px;}
+	</style>
+</head>
+<body>
+  <div class="m-nav">
+sdfsdf
+  </div>
+	<ul>
+		<li data-id="123456" data-account-name="wwq"
+			data-name="魏文庆" data-email="wwq123@163.com"
+			data-mobile="13524543878">wwq</li>
+		<li data-id="123457" data-account-name="cjf"
+			data-name="蔡剑飞" data-email="cjf123@163.com"
+			data-mobile="13968789868">cjf</li>
+	</ul>
+	<div id="card" style="display:none">
+		<table>
+			<caption id="accountName"></caption>
+			<tr><th>姓名：</th><td id="name"></td></tr>
+			<tr><th>邮箱：</th><td id="email"></td></tr>
+			<tr><th>手机：</th><td id="mobile"></td></tr>
+		</table>
+
+	</div>
+  <div id="user" class="user" data-first-name="Wei">aq</div>
+   <div><label class="className" for="user">用户名：</label><input id="user"></div>
+  <button disabled>disabled</button>
+    <script type="text/javascript">
+      // var name = "account-name";
+      // // name.replace(/([a-z]+)(\-)([a-z])/g,);
+      // name.replace(/\-([a-z])/g,function($,$1){
+      //   return $1.toUpperCase();
+      // });
+      // var name = "account-name";
+      // name.replace(/\-([a-z])/g,RegExp.$1.toUpperCase());
+
+
+
+      function dataset(user){
+        if(user.dataset){
+          return user.dataset;
+        }
+        var attributes = user.attributes;
+        var datasetObj = {};
+        for(var i = 0, attribute; attribute = attributes[i]; i++){
+          if(attribute.name.indexOf("data-") === 0){
+            var attributeName = attribute.name.split("data-")[1];
+            var humpName =attributeName.indexOf("-") === -1
+                          ? attributeName
+                          : attributeName.replace(/\-([a-z])/g,function($,$1){
+                              return $1.toUpperCase();
+                            });
+            datasetObj[humpName] = attribute.value;
+          }
+        }
+        return datasetObj;
+      }
+
+      function $(id){
+			return document.getElementById(id);
+		}
+
+		var lis = document.getElementsByTagName('li');
+		for(var i = 0, li;li = lis[i]; i++){
+			li.onmouseenter = function(event){
+				event = event || window.event;
+				var user = event.target|| event.srcElement;
+				// var data = user.dataset;
+				var data = dataset(user);
+
+				$('accountName').innerText = data.accountName;
+				$('name').innerText = data.name;
+				$('email').innerText = data.email;
+				$('mobile').innerText = data.mobile;
+
+				$('card').style.display = 'block';
+			};
+
+			li.onmouseleave = function(event){
+				$('card').style.display = 'none';
+			};
+
+		}
+
+    // if(!window.getComputedStyle) IE兼容实现
+    function currentStyle(element){
+      return element.currentStyle || window.getComputedStyle(element);
+    }
+
+    //获取指定样式属性值
+    function getStyle(element, cssPropertyName){
+      return (element.currentStyle || window.getComputedStyle(element))[cssPropertyName];
+    }
+    </script>
+  </body>
+</html>

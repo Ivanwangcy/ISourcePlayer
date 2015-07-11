@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <script type="text/javascript">
+    var data =[
+               {
+                   text:'第一级 1',
+                   value:'1',
+                   list:[
+                       {
+                           text:'第二级 1.1',
+                           value:'1.1',
+                           list:[
+                               {
+                                   text:'第三级 1.1.1',
+                                   value:'1.1.1',
+                                   list:[]
+                               },
+                           ]
+                         },
+                         {
+                             text:'第二级 1.2',
+                             value:'1.2',
+                             list:[
+                                 {
+                                     text:'第三级 1.2.1',
+                                     value:'1.2.1',
+                                     list:[]
+                                 },
+                             ]
+                           }
+                   ]
+               },
+               {
+                   text:'第一级2',
+                   value:'2',
+                   list:[
+                       {
+                           text:'第二级2.1',
+                           value:'2.1',
+                           list:[
+                               {
+                                   text:'第三级2.1.1',
+                                   value:'2.1.1',
+                                   list:[]
+                               },
+                           ]
+                       },
+                       {
+                           text:'第二级2.2',
+                           value:'2.2',
+                           list:[
+                               {
+                                   text:'第三级2.2.1',
+                                   value:'2.2.1',
+                                   list:[]
+                               },
+                           ]
+                       }
+                   ]
+               }
+              ];
+
+              var searchData = function(data, value){
+                var returnData;
+                var currentData = data;
+                var i = 0;
+                var getData = function(data){
+                  for(var item; item = data[i]; i++){
+                    if(item == value){
+                      console.info(item);
+                      return item;
+                    }
+                    if(!(item.list) || item.list.length == 0){
+                       continue;
+                    }
+                    return getData(item.list, value);
+                  }
+                }
+                returnData = getData(currentData);
+                return returnData;
+              };
+
+              searchData(data, '1.2.1');
+    </script>
+  </body>
+</html>

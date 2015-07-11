@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>实现一个Tab</title>
+    <style media="screen">
+      /*容器*/
+      .container{
+        font: 14px "微软雅黑";
+        width: 574px;
+        border:1px solid #999;
+        margin: auto;
+        box-sizing: border-box;
+      }
+      /*导航*/
+      .tabs{
+        text-align: center;
+        list-style: none;
+        width: 100%;
+        line-height: 30px;
+        padding: 0;
+        margin: 0;
+        display: flex;
+      }
+      /*导航项*/
+      .tabs li{
+        border: 1px solid #cecece;
+        box-sizing: border-box;
+        background-color: #f1f1f1;
+        flex-grow: 1;
+        cursor: pointer;
+      }
+      /*鼠标经过状态*/
+      .tabs li:hover{
+        background-color: white;
+        border: none;
+      }
+
+      /*内容区*/
+      .content{
+        width: 100%;
+        padding: 20px;
+      }
+
+      /*默认样式*/
+
+      /*隐藏其它内容项*/
+      .container>.content:not([id=tab1]){
+        display: none;
+      }
+      /*默认选中第一个标签*/
+      .tabs>li:first-child{
+        background-color: white;
+        border: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <ul class="tabs">
+        <li>课程</li>
+        <li>学习计划</li>
+        <li>技能图谱</li>
+      </ul>
+      <div class="content" id="tab1">
+        课程内容
+      </div>
+      <div class="content" id="tab2">
+        学习计划内容
+      </div>
+      <div class="content" id="tab3">
+        技能图谱内容
+      </div>
+  </div>
+  </body>
+</html>

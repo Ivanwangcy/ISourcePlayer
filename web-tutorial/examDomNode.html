@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>getElementsByClassName浏览器兼容</title>
+  </head>
+  <body>
+    <div id="example">
+      <p id="p1" class="aaa bbb">aaa bbb</p>
+      <p id="p2" class="aaa ccc">aaa ccc</p>
+      <p id="p3" class="bbb ccc">aaa ccc</p>
+    </div>
+
+    <script type="text/javascript">
+      /**
+      *实现getElementsByClassName方法，浏览器兼容
+      */
+      function getElementsByClassName(element, names){
+        if(element.getElementsByClassName){
+          return element.getElementsByClassName(names);
+        }else{
+          var elements = element.getElementsByTagName("*");
+          var result = [],
+              tempElement,
+              nameArr = names.replace(/(^\s*)|(\s*$)/g, "").split(" "),//替换掉两端空格
+              flag,
+              elementClassName;
+          for(var i = 0; tempElement = elements[i]; i++){
+            elementClassName = " " + tempElement.className + " ";
+            flag = true;
+            for(var j = 0; j < nameArr.length; j++){//nameArr[i]有可能为空""
+              if(nameArr[j] && elementClassName.indexOf(" " + nameArr[j] + " ") === -1){
+                flag = false;
+                break;
+              }
+            }
+            if(flag){
+              result.push(tempElement);
+            }
+          }
+          return result;
+        }
+      }
+      var example = document.getElementById("example");
+      console.info(getElementsByClassName(example, "aaa")); //运行结果为包含id为p1, id为p2的元素列表
+      console.info(getElementsByClassName(example, " aaa ")); //运行结果为包含id为p1, id为p2的元素列表
+      console.info(getElementsByClassName(example, "aa")); //[]
+      console.info(getElementsByClassName(example, "aaabbb")); //[]
+      console.info(getElementsByClassName(example, "bbb ccc"));//运行结果为包含id为p3的元素列表
+      console.log(getElementsByClassName(example, "ccc bbb"));//运行结果为包含id为p3的元素列表
+    </script>
+  </body>
+</html>

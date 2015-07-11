@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>元素的淡出效果</title>
+    <style>
+      .element{
+        background-color: #ff6655;
+        width: 500px;
+        height: 300px;
+        margin: auto;
+      }
+      #button{
+        display: block;
+        margin: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="element" class="element"></div>
+    <button id="button" type="button" name="button">点击执行fadeout动画</button>
+    <script type="text/javascript">
+
+      //动画实现函数
+      function fadeout(element){
+        element.style.opacity = 1;
+        var step = function () {
+          element.style.opacity -= 0.1;
+        }
+        var intervalID = setInterval(step, 99);
+        setTimeout(function(){
+          element.style.opacity = 0;
+          clearInterval(intervalID);
+        },1000);
+      }
+      //测试代码, 点击按钮进行测试 fadeout 效果
+      var element = document.getElementById("element");
+      var button = document.getElementById("button");
+      button.onclick = function(){
+        fadeout(element);
+      }
+
+    </script>
+  </body>
+</html>
