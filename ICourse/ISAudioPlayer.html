@@ -17,7 +17,7 @@
 	
 var hrefstr = window.location.href;
 	var currentPath = 'http://content.bitsontherun.com/videos/3XnJSIm4-52qL9xLP.mp4';
-	var teachingActivityDetailsId;
+	var teachingActivityDetailsId = 0;
 	var resourceInfoId = 0;
 	var tomcatBaseURL = "http://localhost/";
 	var paramStr = hrefstr.split("?");
@@ -64,7 +64,7 @@ var hrefstr = window.location.href;
 //            audioHeight:50
         });
         //player.setSrc("assets/media/AirReview-Landmarks-02-ChasingCorporate.mp3");
-        player.play();
+        //player.play();
         player.seekable = true;
 		
 		
@@ -76,7 +76,7 @@ var hrefstr = window.location.href;
      * */
    // setInterval(updateResActComProAction,60000);
 		//getLastViewLocationInfo();
-		
+		saveResourceBrowserDuration();
 		if(teachingActivityDetailsId){
 			//updateResActComProAction();
 			//setInterval(saveResourceBrowserDuration,60000);
