@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <style media="screen">
+    *{ color:red; }
+.parent p:last-child{ color:blue; }
+.b.c{ color:green; }
+  td table{ box-shadow:none; border:none; }
+    </style>
+  </head>
+  <body>
+    <!-- /XXXXXXXXX -->
+    <div class="parent">
+<div class="a">This is a Demo</div>
+<p class="b c">Hello World</p>
+<label for=""></label>
+
+</div>
+
+<script type="text/javascript">
+  function type(object){
+      //不能直接使用 object.toString() 方法, 要调用Object原型方法
+      //toString 之后得到的结果是这样 [object number] ,需要截取第9位开始和后2位结束
+      //小写输出
+    return Object.prototype.toString.call(object).slice(8,-1).toLowerCase();
+  }
+  // var t = type(1) // t==="number"
+  // console.info(t);
+  // var t = type(new Number(1)) // t==="number"
+  // console.info(t);
+  // var t = type("abc") // t==="string"
+  // console.info(t);
+  // var t = type(new String("abc")) // t==="string"
+  // console.info(t);
+  // var t = type(true) // t==="boolean"
+  // console.info(t);
+  // var t = type(undefined) // t==="undefined"
+  // console.info(t);
+  // var t = type(null) // t==="null"
+  // console.info(t);
+  // var t = type({}) // t==="object"
+  // console.info(t);
+  // var t = type([]) // t==="array"
+  // console.info(t);
+  // var t = type(new Date) // t==="date"
+  // console.info(t);
+  // var t = type(/\d/) // t==="regexp"
+  // console.info(t);
+  // var t = type(function(){}) // t==="function"
+  // console.info(t);
+
+
+  function Shap(){
+    this.x = 0;
+    this.y = 0;
+  }
+  Shap.prototype.move = function(x,y){
+    this.x += x;
+    this.y += y;
+    console.info('Shape moved.');
+
+  }
+
+  function Rectangle(){
+    Shap.call(this);
+  }
+  Rectangle.prototype = Object.create(Shap.prototype);
+  Rectangle.prototype.constructor = Rectangle;
+
+
+  var rect = new Rectangle();
+
+  rect.move(1,1);
+
+</script>
+  </body>
+</html>

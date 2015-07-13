@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>幻灯布局</title>
+    <style>
+      .slide{
+        position: relative;
+        width: 100%;
+        height: 350px;
+        background-color: #9DC3E6;
+      }
+
+      .pointer{
+        width: 100%;
+        height: 40px;
+        position: absolute;
+        bottom: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .pointer>i{
+        width: 15px;
+        height: 15px;
+        margin: 3px;
+        background-color: black;
+        border-radius: 50%;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="slide">
+    	<!-- 图片省略 -->
+	    <!-- 以下是指示器 -->
+	    <div class="pointer"><i></i><i></i><i></i></div>
+    </div>
+  </body>
+</html>

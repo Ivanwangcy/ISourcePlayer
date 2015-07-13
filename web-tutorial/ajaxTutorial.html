@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Ajax请求GET方法的封装</title>
+  </head>
+  <body>
+    <script type="text/javascript">
+      //序列化参数
+      function serialize(data){
+        if(!data) return '';
+        var pairs = [];
+        for(var name in data){
+          if(!data.hasOwnProperty(name)) continue;
+          if(typeof data[name] === 'function') continue;
+          var value = data[name] + '';
+          pairs.push(encodeURIComponent(name) + '='
+                    + encodeURIComponent(value));
+        }
+        return pairs.join('&');
+      }
+
+      //Ajax请求GET方法的封装
+      function get(url, options, callback){
+        var xhr = new XMLHttpRequest();//创建XHR对象
+        //处理返回数据
+        xhr.onreadystatechange = function (callback) {
+          if(xhr.readyState == 4) {
+            if(xhr.status >= 200 && xhr.status < 300 || xhr.status == 304){
+              callback(xhr.responseText);
+            } else {
+              alert('Request was unsuccessful: ' + xhr.status);
+            }
+          }
+        }
+        // 发送请求
+        url += '?' + serialize(options);
+        xhr.open('get',url , true);
+        xhr.setRequestHeader('requestheader','requestValue');
+        xhr.send(null);
+      }
+
+      //Ajax请求POST方法的封装
+      function post(url, options, callback){
+        var xhr = new XMLHttpRequest();//创建XHR对象
+        //处理返回数据
+        xhr.onreadystatechange = function (callback) {
+          if(xhr.readyState == 4) {
+            if(xhr.status >= 200 && xhr.status < 300 || xhr.status == 304){
+              callback(xhr.responseText);
+            } else {
+              alert('Request was unsuccessful: ' + xhr.status);
+            }
+          }
+        }
+        // 发送请求
+        xhr.open('post', url , true);
+        xhr.setRequestHeader('requestheader','requestValue');
+        xhr.send(serialize(options));
+      }
+
+
+      //测试代码 url = "http://www.163.com?name=get&number=163&type=true&content=&value=null";
+      post('http://www.163.com',
+            {name:'post',number:163,type:true,content:'',value:null},
+            function(response){
+              //响应处理
+            });
+    </script>
+  </body>
+</html>

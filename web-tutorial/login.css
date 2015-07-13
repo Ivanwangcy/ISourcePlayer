@@ -1,0 +1,35 @@
+form>legend{
+  font: 14px/16px '微软雅黑';
+  margin-bottom: 15px;
+  font-weight: bold;
+}
+form div{
+  font-size: 12px '宋体';
+  line-height: 24px;
+  vertical-align: middle;
+}
+form div>label{
+    width: 60px;
+    white-space: nowrap;
+    display: inline-block;
+}
+
+form div>input{
+  width: 200px;
+  height: 20px;
+  border: 1px solid #ddd;
+  box-sizing: border-box;
+  margin: 15px;
+}
+
+form #submit{
+  margin-left: 82px;
+  width: 40px;
+  height: 20px;
+  background-color: blue;
+  color:white;
+  border: none;
+  font: 12px '宋体';
+  text-align: center;
+  vertical-align: middle;
+}

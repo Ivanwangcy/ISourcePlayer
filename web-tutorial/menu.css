@@ -1,0 +1,35 @@
+.menu{
+  font: 12px '宋体';
+  color: #000;
+
+}
+.menu button{
+  width: 50px;
+  height: 28px;
+  background-color: #eee;
+  border: 1px solid #ddd;
+}
+
+.menu ul{
+  margin-top: 1px;
+  padding-left: 0;
+  margin-left: 0;
+}
+
+.menu li{
+  list-style:none;
+  border: 1px solid #ddd;
+  border-top-width: 0px;
+  height: 30px;
+  width: 65px;
+  background-color: white;
+  padding: 0px 10px;
+  line-height: 30px;
+  text-align: center;
+}
+.menu li:first-of-type{
+  border-top-width: 1px;
+}
+.menu li:hover{
+  background-color: #ddd;
+}
