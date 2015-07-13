@@ -2,64 +2,21 @@
 <html>
 <head>
     <title>视频展示</title>
-	<meta name="google" value="notranslate" />         
+	<meta name="google" value="notranslate" />
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<script type="text/javascript" src="Base64Code.js"></script>
     <script type="text/javascript" src="jwplayer.js"></script>
-	 <style type="text/css" media="screen"> 
+	 <style type="text/css" media="screen">
             html, body  { height:100%; }
-            body { margin:0; padding:0; overflow:auto; text-align:center; 
-                   background-color: #ffffff; }   
+            body { margin:0; padding:0; overflow:auto; text-align:center;
+                   background-color: #ffffff; }
             object:focus { outline:none; }
     </style>
-	<script type="text/javascript">
-			
-        </script>
+	<script type="text/javascript" src="server.js"> </script>
 </head>
 <body>
 <div id="container"></div>
 <script type="text/javascript">
-	var hrefstr = window.location.href;
-	var currentPath = 'http://content.bitsontherun.com/videos/3XnJSIm4-52qL9xLP.mp4';
-	var teachingActivityDetailsId = 0;
-	var resourceInfoId = 0;
-	var tomcatBaseURL = "http://localhost/";
-	var paramStr = hrefstr.split("?");
-	
-	if(paramStr.length > 0)
-	{
-		var currentBaseURL = paramStr[0].split("playerJW")[0];
-		var videoParam = paramStr[1].split("=");
-
-		/**获取视频资源的URL参数值*/
-		params = base64decode(videoParam[1]);
-		//var paraArr = paramsStr[1].split("&");
-		/** 分号 前面是 资源类型 ，后面是视频地址URL */
-		var tomcatParamsArr = params.split(";");
-		
-		if(tomcatParamsArr.length > 0){
-			var resourceInfo = tomcatParamsArr[0];
-			var fileType = "";
-			if(resourceInfo.indexOf("@") > 0){
-				resourceInfoId = resourceInfo.split("@")[0];
-				//alert(resourceInfoId);
-				//fileType = resourceInfo.split("@")[1];
-			}else{
-				//fileType = tomcatParamsArr[0];
-			}
-		
-			var tomcatFilePath = tomcatParamsArr[1];
-			var ICourseFilesSplit = tomcatFilePath.split("/ICourseFiles/");
-			tomcatBaseURL = ICourseFilesSplit[0]+"/";
-			currentPath = currentBaseURL + "ICourseFiles/" + ICourseFilesSplit[1];
-			 
-			 if(tomcatParamsArr.length >= 3)
-			{
-				teachingActivityDetailsId = tomcatParamsArr[2];
-			}
-		}
-	}
-	
 
     jwplayer("container").setup({
         <!-- file: 'http://content.bitsontherun.com/videos/3XnJSIm4-52qL9xLP.mp4', -->
