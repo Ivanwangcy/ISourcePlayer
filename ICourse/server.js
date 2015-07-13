@@ -46,9 +46,10 @@ var hrefstr = window.location.href;
    * 服务器方法
    * */
  // setInterval(updateResActComProAction,60000);
-  saveResourceBrowserDuration();
+  saveResourceBrowserScanNumber();
   if(teachingActivityDetailsId){
-    getLastViewLocationInfo();
+  //  getLastViewLocationInfo();
+    updateResActComProAction();
     setInterval(updateResActComProAction,60000);
   }
   setInterval(saveResourceBrowserDuration,60000);
@@ -57,8 +58,7 @@ var hrefstr = window.location.href;
   /**
    * 保存视频资源观看时长
    * */
-  function saveResourceBrowserDuration()
-  {
+  function saveResourceBrowserDuration(){
       var requestVars = {teachingActivityDetailsId:teachingActivityDetailsId};
       requestVars.resourceInfoId = resourceInfoId;
       if(player){
@@ -68,19 +68,21 @@ var hrefstr = window.location.href;
       sendServer(requestVars,url,loaderSuccessfulHandler);
   }
 
+	function saveResourceBrowserScanNumber(){
+      var requestVars = {teachingActivityDetailsId:teachingActivityDetailsId};
+      requestVars.resourceInfoId = resourceInfoId;
+      var url = tomcatBaseURL + "/saveResourceBrowserScanNumber.action";
+      sendServer(requestVars,url,loaderSuccessfulHandler);
+  }
   /**
    * 更新教学活动视频资源观看时长
    * */
-  function updateResActComProAction()
-  {
+  function updateResActComProAction(){
       var requestVars = {teachingActivityDetailsId:teachingActivityDetailsId,
           };
           if(player){
             requestVars.lastViewLocation = Math.round(player.currentTime) ? Math.round(player.currentTime) : 0;
           }
-//        requestVars.teachingActivityDetailsId = teachingActivityDetailsId;
-      //	 requestVars.lastViewLocation = player.getCurrentCaptions();
-//        requestVars.lastViewLocation = Math.round(player.currentTime());
       var url = tomcatBaseURL + "/updateResActComProAction.action";
       sendServer(requestVars,url,loaderSuccessfulHandler);
   }
@@ -102,15 +104,14 @@ var hrefstr = window.location.href;
    *  请求服务器端
    * */
   function sendServer(requestVars,url,callback){
-
-  $.ajax({
-     type: "POST",
-     url: url,
-     cache: false,
-     dataType: 'jsonp',
-     data: requestVars,
-     success: callback
-  });
+	  $.ajax({
+	     type: "POST",
+	     url: url,
+	     cache: false,
+	     dataType: 'jsonp',
+	     data: requestVars,
+	     success: callback
+	  });
   }
 
   /**
