@@ -4,6 +4,7 @@
     <title>视频展示</title>
 	<meta name="google" value="notranslate" />
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <script type="text/javascript" src="assets/js/jquery.js"></script>
 	<script type="text/javascript" src="Base64Code.js"></script>
     <script type="text/javascript" src="jwplayer.js"></script>
 	 <style type="text/css" media="screen">
@@ -20,9 +21,9 @@
 
 
     jwplayer("container").setup({
-        <!-- file: 'http://content.bitsontherun.com/videos/3XnJSIm4-52qL9xLP.mp4', -->
+        // <!-- file: 'http://content.bitsontherun.com/videos/3XnJSIm4-52qL9xLP.mp4', -->
 		file: currentPath,//文件URL
-        <!-- image: 'http://content.bitsontherun.com/thumbs/3XnJSIm4-480.jpg', -->
+        // <!-- image: 'http://content.bitsontherun.com/thumbs/3XnJSIm4-480.jpg', -->
 		//image:'http://p5.qhimg.com/dmt/490_350_/t01aa6474596c4fbe25.jpg',
         primary: "flash",
 		autostart: false,
@@ -31,11 +32,11 @@
 		hostURL: tomcatBaseURL, //宿主URL
 		width: "100%",
 		height: "35",
-		<!-- aspectratio: '16:9', -->
+		// <!-- aspectratio: '16:9', -->
 		streamer:"start",
 		startparam: "start",
-		<!-- provider:"http", -->
-		<!-- type:"http", -->
+		// <!-- provider:"http", -->
+		// <!-- type:"http", -->
         repeat: false
     });
 </script>

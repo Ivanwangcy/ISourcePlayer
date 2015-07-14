@@ -1,4 +1,5 @@
 var hrefstr = window.location.href;
+var player = undefined;
 	var currentPath = 'http://content.bitsontherun.com/videos/3XnJSIm4-52qL9xLP.mp4';
 	var teachingActivityDetailsId = 0;
 	var resourceInfoId = 0;
@@ -46,9 +47,10 @@ var hrefstr = window.location.href;
    * 服务器方法
    * */
  // setInterval(updateResActComProAction,60000);
-  saveResourceBrowserScanNumber();
+
   if(teachingActivityDetailsId){
   //  getLastViewLocationInfo();
+  	saveResourceBrowserScanNumber();
     updateResActComProAction();
     setInterval(updateResActComProAction,60000);
   }
