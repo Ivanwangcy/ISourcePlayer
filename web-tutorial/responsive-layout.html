@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>响应式布局</title>
+    <meta name="viewport" content="width:device-width,initial-scale=1.0,user-scalable=no">
+    <style media="screen">
+      .side, .main{ height: 300px; }
+      .side{ background-color: rgb(196, 95, 139); }
+      .main{ background-color: rgb(216, 122, 21); }
+      @media screen and (min-width: 1000px) {
+        .parent{ width: 960px; margin: 0 auto; }
+        .side{ width: 300px; float: left; }
+        .main{ width: 650px; float: right; }
+      }
+      @media screen and (max-width: 1000px) and (min-width: 400px) {
+        .parent{ width: 100%; }
+        .side{ width: 300px; float: left; margin-right: 10px; }
+        .main{ overflow: hidden; }
+      }
+      @media screen and (max-width: 400px) {
+        .parent{ width: 100%; }
+        .side{ margin-bottom: 10px; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="parent"> <div class="side"> </div> <div class="main"> </div> </div>
+   </body>
+</html>

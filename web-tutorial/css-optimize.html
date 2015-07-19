@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>CSS代码优化</title>
+    <style media="screen">
+    h1,h2,h3{font-weight: bold;}
+    h3{width:100px;}
+    .g-bd{ border: 1px solid; border-color: #000 #f00 #f00 #000; color: #bf2; }
+    .m-tab{ margin: 10px 10px 20px; color: #f00; }
+    .m-tab a{ display: block; padding: 0 10px; font: 20px/1.5 "Microsoft YaHei", simsun; }
+    .m-side{ width: 200px; background: #ccc url(bg.png) repeat-y; }
+
+      /*h1{font-weight: bold;}
+      h2{font-weight: bold;}
+      h3{font-weight: bold;width:100px;}*/
+      /*.g-bd{
+      border-top: 1px solid #000;
+      border-right: 1px solid #f00;
+      border-bottom: 1px solid #f00;
+      border-left: 1px solid #000;
+      color: #bbff22;
+      }*/
+      /*.m-tab{
+      margin-top: 10px;
+      margin-right: 10px;
+      margin-bottom: 20px;
+      margin-left: 10px;
+      color: rgb(255,0,0);
+      }*/
+      /*.m-tab li a{
+      display: block;
+      padding: 0px 10px;
+      font-family: "Microsoft YaHei", simsun;
+      font-size: 20px;
+      line-height: 1.5;
+      }*/
+      /*.m-side{
+      width: 200px;
+      background-image: url(bg.png);
+      background-repeat: repeat-y;
+      background-color: #ccc;
+      }*/
+    </style>
+  </head>
+  <body>
+    <div class="g-bd m-tab">
+      <a href="#">sdfasdfasdfasf撒地方撒地方</a>asdf asdf asdf asdf
+      sdf
+       as
+       df asdf
+    </div>
+    <div class="m-side">
+      asdfasdfasdf
+    </div>
+  </body>
+</html>
