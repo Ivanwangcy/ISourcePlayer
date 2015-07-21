@@ -21,6 +21,7 @@
         this.imageCanvas = null;
         this.gifViewer = null;
         this.canvasContext = null;
+
         //默认选项
         this.defaultOptions = {
             scale: 1.00,
@@ -46,7 +47,6 @@
 
             //创建图片查看器,容器内容
             this.createViewerElement();
-
             //初始化 jQuery 对象,与原生 Dom 对象 canvas, context
             this.initObjects();
 
@@ -59,7 +59,6 @@
             this.checkFullScreen();
             this.addEventHandlers();
             this.drawScale();
-
 
         },
         createViewerElement:function(){
