@@ -38,8 +38,8 @@
       var addEvent = document.addEventListener ?
           function(elem, type, listener, useCapture) {
             elem.addEventListener(type, listener, useCapture);
-          }
-          : function(elem, type, listener, useCapture) {
+          } :
+          function(elem, type, listener, useCapture) {
               elem.attachEvent('on' + type, listener);
             };
 

@@ -3,33 +3,21 @@
 <head>
   <meta charset="UTF-8">
   <title>图书畅销榜</title>
+  <meta name="viewport" content="width:device-width,
+      initial-sacle=1.0,user-saclable=no">
   <style media="screen">
-  slide{position:relative;width:495px;}
-  .slide img{display:block;}
-  .pointer{position:absolute;bottom:0px;right:0px;height:30px;line-height:30px;}
-  .pointer i{width:10px;height:10px;border-radius:5px;background-color:#000;display:inline-block;margin-right:10px;}
-  .pointer .current{background-color:#fff;}
-  p{
-    font-size: 50rem;
-    height: 50vh;
+  .a{float:left;width:600px;margin:10px;height: 100px;background-color: #27df11}
+  @media screen and (max-width:959px){
+  	.a{width:400px;padding:10px;}
+  }
+  @media screen and (max-width:320px){
+  	.a{float:none;width:auto;}
   }
   </style>
 </head>
 <body>
-  <div class="parent clearfix">
-    <div class="side">侧栏</div>
-    <div class="main">主栏</div>
-</div>
-<div class="title">
-  <p>
+  <div class="a">
 
-  不i爱他是登录法师打发斯蒂芬撒打发斯蒂芬阿斯达f阿斯达f阿斯达f阿斯达f阿斯达f阿斯达f阿斯达f阿斯达f阿斯达f
-  </p>
-</div>
-  <div class="slide">
-  	<!-- 图片省略 -->
-  	<!-- 以下是指示器 -->
-  	<div class="pointer"><i class="current"></i><i></i><i></i></div>
   </div>
 </body>
 </html>
