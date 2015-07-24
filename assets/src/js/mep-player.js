@@ -40,7 +40,7 @@
 		// useful for <audio> player loops
 		loop: false,
 		// rewind to beginning when media ends
-                autoRewind: true,
+    autoRewind: true,
 		// resize to media dimensions
 		enableAutosize: true,
 		// forces the hour marker (##:00:00)
