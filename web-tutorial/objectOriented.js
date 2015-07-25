@@ -22,7 +22,7 @@ Person.prototype.age = 18;
 Person.prototype.job = "Engineer";
 Person.prototype.sayName = function(){
   console.info(this.name);
-}
+};
 
 var person1 = new Person();
 var person2 = new Person();
@@ -57,7 +57,7 @@ Person.prototype = {//重写了原型对象
   sayName: function(){
     console.info(this.name);
   }
-}
+};
 
 person1 = new Person();
 person1.friends.push("American");
@@ -83,7 +83,7 @@ Person.prototype = {
   sayName : function() {
     console.info(this.name);
   }
-}
+};
 person1 = new Person();
 person1.friends.push("Coffee");
 person2 = new Person();
@@ -95,7 +95,7 @@ console.info(person2.friends === person1.friends); // true
 // //////////////////////////////////////////
 // //////////////////////////////////////////
 // //////////////////////////////////////////
-//动态原型模式 --- 推荐
+// 动态原型模式 --- 推荐
 // ////////////////////////////////////////
 // ////////////////////////////////////////
 // ////////////////////////////////////////
@@ -122,7 +122,7 @@ function SuperType(){
   if(typeof this.getSuperValue !== "function"){
     SuperType.prototype.getSuperValue = function(){
       return this.property;
-    }
+    };
   }
 }
 
@@ -137,7 +137,7 @@ SubType.prototype = new SuperType(); //继承SuperType
 var instance = new SubType();
 SubType.prototype.getSubValue = function(){
   return this.subProperty;
-}
+};
 // SubType.prototype = {};  //这样做就解除了继承关系, 重写了原型, 原型链被切断
 
 // console.info(instance.constructor);
