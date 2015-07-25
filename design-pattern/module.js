@@ -40,3 +40,45 @@ var myNamespace = (function () {
 })();
 
 myNamespace.myPublicMethod("Hello");
+
+//使用 Module 模式, 实现购物车
+
+var myShoppingCart = (function () {
+  var basket = [];
+  return {
+    addItem : function (item) {
+      basket.push(item);
+    },
+    removeItem: function (item) {
+      basket.splice(item);
+    },
+    viewBasket: function () {
+      console.log(basket.toString() + ":" + this.getItemCount() + " : " + this.getTotal());
+    },
+    getItemCount: function () {
+      return basket.length;
+    },
+    getTotal: function () {
+      var itemCount = this.getItemCount(),
+          total = 0;
+      while (itemCount--) {
+        total += basket[itemCount].price;
+      }
+
+      return total;
+    }
+  }
+})();
+
+myShoppingCart.addItem({item: "apples",price: 2.5});
+myShoppingCart.addItem({item: "orange",price: 3.5});
+myShoppingCart.viewBasket();
+
+//jQuery  模块化, 插件开发
+(function($){
+  $.fn.newPlugin = function () {
+    //插件实现
+  }
+
+  return $(this);
+})(jQuery);
