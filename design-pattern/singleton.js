@@ -65,3 +65,41 @@ var badSingleA = myBadSingleton.getInstance();
 var badSingleB = myBadSingleton.getInstance();
 
 console.log(badSingleA.getRandomNumber() === badSingleB.getRandomNumber());
+
+
+//实际应用示例, 静态与单例模式使用
+var singletonTester = (function(){
+
+  function Singleton(options){
+    options = options || {};
+
+    //为Singleton 设置一些属性
+    this.name = "SingletonName";
+    this.pointX = options.pointX || 6;
+    this.pointY = options.pointY || 10;
+  }
+
+  //实例持有者
+  var instance;
+
+  //静态方法和变量的模拟
+  var _static = {
+    name: "SingletonStaticName",
+    getInstance: function (options) {
+      if(instance === undefined){
+        instance = new Singleton(options);
+      }
+      return instance;
+    }
+  };
+
+  return _static;
+})();
+
+var singletonTest = singletonTester.getInstance({
+  pointX:100
+});
+
+//记录 pointX 的输出以便验证
+//输出: 100
+console.log( singletonTest.pointX );
