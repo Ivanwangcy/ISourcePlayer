@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>本地图片预览</title>
+    <style media="screen">
+      .v-box{width: 550px;height: 400px;background-color: #ccc;}
+      .v-box .itbox{float: left; width: 100px;height: 100px;padding: 5px;background-color: #fff;}
+      .v-box img{width: 90px;height: 90px;}
+      .form-box{width: 500px;text-align: center;}
+      .form-box .add{ border: 1px solid #222; padding: 5px; background-color: rgb(122, 41, 240); cursor: pointer; }
+      .f-hidden{ display: none; }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="v-box" id="vbox">
+      </div>
+      <div class="form-box">
+        <label for="images" class="add">添加图片</label>
+        <form class="f-hidden" action="index.html" method="post">
+          <input type="file" name="image" id="images" accept="images/*" multiple>
+        </form>
+      </div>
+    </div>
+    <script type="text/javascript">
+      var addEvent = function (element, type, handler) {
+        if(!!element.addEventListener) {
+          element.addEventListener(type, handler, false);
+        } else {
+          element.attachEvent("on" + type,handler);
+        }
+      }
+
+      function file2DataUrl(file, callback){
+        if(!window.FileReader){
+          throw "Browser not support File API!";
+        }
+
+        var fileReader = new FileReader();
+        fileReader.readAsDataURL(file);
+        fileReader.onload = function(event){
+          callback(event.target.result);
+        }
+      }
+
+      //添加预览文件
+      function appendImage(url){
+        //创建预览图片容器
+        var div = document.createElement("div");
+        div.className = "itbox";
+        document.getElementById("vbox").appendChild(div);
+
+        //添加预览图片
+        var image = new Image();
+        div.appendChild(image);
+        image.src = url;
+      }
+
+      var images = images ? images : document.getElementById("images");
+      addEvent(images,"change",function (event) {
+        if (!event.target) {
+          throw "Browser not support!";
+        }
+
+        var list = event.target.files;
+        if(!list || !list.length){
+          console.log("请选择文件");
+          return ;
+        }
+
+        for(var i = 0, len = list.length; i < len; i++){
+          file2DataUrl(list[i], appendImage);
+        }
+        event.target.parentNode.reset();
+      });
+    </script>
+  </body>
+</html>
