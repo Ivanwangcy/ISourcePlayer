@@ -85,6 +85,8 @@ var singletonTester = (function(){
   //静态方法和变量的模拟
   var _static = {
     name: "SingletonStaticName",
+
+    //获取实例的方法, 返回 singleton 对象的 singleton 实例
     getInstance: function (options) {
       if(instance === undefined){
         instance = new Singleton(options);
