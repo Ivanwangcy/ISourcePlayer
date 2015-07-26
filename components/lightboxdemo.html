@@ -3,10 +3,20 @@
   <head>
     <meta charset="utf-8">
     <title>lightbox 实现</title>
+    <link rel="stylesheet" href="css/reset.css" media="screen" title="no title" charset="utf-8">
+    <style media="screen">
+      #G-lightbox-mask{
+        position: fixed;
+        height: 100%;
+        width: 100%;
+        background-color: #ccc;
+        z-index: 999;
+      }
+    </style>
   </head>
   <body>
-    <div class="G-lightbox-mask"> </div>
-    <div class="G-lightbox-popup">
+    <div id="G-lightbox-mask"> </div>
+    <div id="G-lightbox-popup">
       <div class="lightbox-pic-view">
         <span class="lightbox-btn lightbox-prev">&lt;</span>
         <img class="lightbox-image" src="assets/Desert.jpg" alt="沙漠" />
