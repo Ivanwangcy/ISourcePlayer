@@ -141,7 +141,7 @@ SubType.prototype.getSubValue = function(){
 // SubType.prototype = {};  //这样做就解除了继承关系, 重写了原型, 原型链被切断
 
 // console.info(instance.constructor);
-// console.info(instance.getSuperValue());
+// console.info(instance.getSuperValue()); // Google
 // console.info(instance instanceof Object);
 // console.info(instance instanceof SuperType);
 // console.info(instance instanceof SubType);
