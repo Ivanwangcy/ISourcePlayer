@@ -1,7 +1,7 @@
 // Place third party dependencies in the lib folder
 //
 // Configure loading modules from the lib directory,
-// except 'app' ones, 
+// except 'app' ones,
 requirejs.config({
     "baseUrl": "js/lib",
     "paths": {
@@ -9,7 +9,8 @@ requirejs.config({
     },
     "shim": {
         "jquery.alpha": ["jquery"],
-        "jquery.beta": ["jquery"]
+        "jquery.beta": ["jquery"],
+        "select2": ["jquery"]
     }
 });
 
