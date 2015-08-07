@@ -47,8 +47,8 @@ $(function () {
       "blur .edit"     : "close"
     },
     initialize: function () {
-      this.listento(this.model, 'change', this.render);
-      this.listento(this.model, 'destroy', this.remove);
+      this.listenTo(this.model, 'change', this.render);
+      this.listenTo(this.model, 'destroy', this.remove);
     }
   });
 
