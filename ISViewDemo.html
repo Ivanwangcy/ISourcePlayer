@@ -10,6 +10,31 @@
 <body>
 <canvas class="image-container" id="canvas"/>
 <script type="text/javascript" src="assets/custom/viewer.js"></script>
+<script type="text/javascript">
+  function randomStr(str){
+    var arr = str.split("");
+    var newStr = "";
+    var len = arr.length;
+    while (len > 0) {
+      var index = Math.floor(Math.random()*len);
+      newStr += arr.splice(index, 1);
+      len--;
+    }
+    // alert(newStr);
+  }
 
+  randomStr("Hello World!");
+
+  var sum = function (num){
+    if(num == 0){
+      return 0;
+    }
+
+    return num + arguments.callee(num - 1);
+  };
+
+
+  console.log(sum(100));
+</script>
 </body>
 </html>
