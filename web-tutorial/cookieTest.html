@@ -18,14 +18,14 @@
           var item = list[i];
           var eqIndex = item.indexOf('=');
           var name = item.substring(0, eqIndex);
-          var name = decodeURIComponent(name);
+          name = decodeURIComponent(name);
           var value = item.substring(eqIndex + 1);
           value = decodeURIComponent(value);
           cookie[name] = value;
         }
         return cookie;
       }
-      
+
       //测试语句
       console.log(getCookies());
     </script>
