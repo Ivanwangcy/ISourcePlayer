@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>the5fire.com-backbone.js-Hello World</title>
+  </head>
+  <body>
+    <button id="check">新手报到</button>
+    <ul id="world-list">
+    </ul>
+    <a href="http://www.the5fire.com">更多教程</a>
+    <script src="lib/zepto.js" charset="utf-8"></script>
+    <script src="lib/underscore.js" charset="utf-8"></script>
+    <script src="lib/backbone.js" charset="utf-8"></script>
+    <script type="text/javascript">
+      (function($) {
+        // console.log($(check));
+
+        // Model
+        var World = Backbone.Model.extend({
+          name: null
+        });
+
+        // Collection
+        var Worlds = Backbone.Collection.extend({
+          initialize: function (models, options) {
+            this.bind("add", options.view.addOneWorld);
+          }
+        });
+
+        // View
+        var AppView = Backbone.View.extend({
+          el: $("body"),
+          initialize: function () {
+            this.worlds = new Worlds(null, {view: this});
+          },
+          events: {
+            "click #check": "checkIn"
+          },
+          checkIn: function () {
+            var world_name = prompt("请问, 您是来自地球吗?");
+            if(world_name == ""){
+              world_name = "外星人";
+            }
+            var world = new World({name: world_name});
+            this.worlds.add(world);
+          },
+          addOneWorld: function (model) {
+            $("#world-list").append("<li>" + model.get("name") + "</li>");
+          }
+        });
+
+        var appView = new AppView();
+      }(Zepto));
+    </script>
+  </body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>backbone model demo</title>
+  </head>
+  <body>
+    <script src="lib/underscore.js" charset="utf-8"></script>
+    <script src="lib/zepto.js" charset="utf-8"></script>
+    <script src="lib/backbone.js" charset="utf-8"></script>
+    <script type="text/javascript">
+      var InitModel = Backbone.Model.extend({
+        initialize: function () { // 初始化模块
+          console.log("backbone model initialize");
+
+          // 初始化时绑定 change 事件(并且可以绑定到特定的属性上)
+          this.bind("change:name", function(model) {
+            console.log("你改变了name属性", this.get("name"));
+          });
+
+          // 初始化时绑定 invalid 事件
+          this.bind("invalid", function (model, error) {
+            console.log(error);
+          });
+        },
+        defaults: { // 模块属性默认值
+          name: "backboneModelName",
+          age: 0
+        },
+        validate: function (attributes) { // 验证函数
+          if(attributes.name == ""){
+            return "name is not null";
+          }
+        },
+        aboutMe: function () { // 自定义模块方法
+          console.log("name: " + this.get("name") + ", age: " + this.get("age"));
+        }
+      });
+      var init = new InitModel();
+      // console.log(init.get("name"));
+      // console.log(init.get("age"));
+      init.aboutMe();
+      init.set({name: "newName", age: 1});
+      // console.log(init.get("name"));
+      // console.log(init.get("age"));
+      init.aboutMe();
+
+      // 默认 set 时不验证
+      init.set({name: ""});
+
+      // 需要手动触发 validate = true
+      init.set({name: ""}, {validate: true});
+
+      // save 方法会触发 验证
+      init.save();
+    </script>
+  </body>
+</html>
