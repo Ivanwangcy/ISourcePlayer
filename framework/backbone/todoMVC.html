@@ -1,11 +1,16 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <title>Backbone.js Todos</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/todos.css" media="screen" title="no title" charset="utf-8">
   </head>
   <body>
+
+    <!-- HTML -->
     <div class="todoapp">
       <header>
         <h1>Todos</h1>
@@ -26,11 +31,17 @@
       Created by Ivan
       <br>
     </div>
+
+    <!-- Scripts -->
     <script src="lib/underscore.js" charset="utf-8"></script>
     <script src="lib/zepto.js" charset="utf-8"></script>
     <script src="lib/backbone.js" charset="utf-8"></script>
-    <script src="todos.js" charset="utf-8"></script>
+    <script src="lib/backbone.localStorage.js" charset="utf-8"></script>
+    <script src="js/todos.js" charset="utf-8"></script>
+
     <!-- Templates -->
+
+    <!-- item-template -->
     <script type="text/template" id="item-template">
       <div class="view">
         <input id="checkItem" class="toggle" type="checkbox" name="name" <%= done ? "checked" : "" %> />
@@ -40,6 +51,7 @@
       <input class="edit" type="text" name="name" value="<%- title %>">
     </script>
 
+    <!-- stats-template -->
     <script type="text/template" id="stats-template">
       <% if (done) { %>
         <a id="clear-completed">Clear <%= done %> completed <%= done == 1 ? 'item' : 'items'%></a>
