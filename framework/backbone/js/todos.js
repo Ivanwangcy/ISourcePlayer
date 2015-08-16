@@ -7,9 +7,11 @@ $(function () {
 
     // Default attribute
     defaults: function(){
-      title: "empty todo...",
-      order: Todos.nextOrder(),
-      done: false
+      return {
+        title: "empty todo...",
+        order: Todos.nextOrder(),
+        done: false
+      };
     },
     toggle: function () {
       this.save({done: !this.get("done")});
@@ -29,7 +31,7 @@ $(function () {
     },
     remaining: function () {
       return this.where({done: false});
-    }
+    },
     nextOrder: function () {
       if(!this.length) return 1;
       return this.last().get("order") + 1;
@@ -92,7 +94,7 @@ $(function () {
 
   var AppView = Backbone.View.extend({
     el: $("#todoapp"),
-    statsTemplate: _.template($("#stats_template").html()),
+    statsTemplate: _.template($("#stats-template").html()),
     events: {
       "keypress #new-todo": "createOnEnter",
       "click #clear-completed": "clearCompleted",
@@ -100,7 +102,7 @@ $(function () {
     },
     initialize: function() {
       this.input = this.$("#new-todo");
-      this.allCheckbox = this.$("toggle-all")[0];
+      this.allCheckbox = this.$("#toggle-all")[0];
 
       this.listenTo(Todos, 'add', this.addOne);
       this.listenTo(Todos, 'reset', this.addAll);
@@ -109,6 +111,7 @@ $(function () {
       this.footer = this.$('footer');
       this.main = $('#main');
 
+      // Todos.create({title: "My first Todo items"});
       Todos.fetch();
     },
     render: function() {
@@ -134,10 +137,24 @@ $(function () {
       Todos.each(this.addOne, this);
     },
     createOnEnter: function (e) {
-      if(e.keyCode == 13){
+      if(e.keyCode != 13) return;
+      if(!this.input.val()) return;
 
-      }
+      Todos.create({title: this.input.val()});
+      this.input.val("");
+    },
+    clearCompleted: function() {
+      _.invoke(Todos.done(), 'destroy');
+      return false;
+    },
+    toggleAllComplete: function() {
+      var done = this.allCheckbox.checked;
+      Todos.each(function(todo) {
+        todo.save({'done': done});
+      });
     }
   });
 
+  var App = new AppView;
+  // App.Todos.create({title: "My first Todo items"});
 });
