@@ -126,6 +126,10 @@ $(function () {
 
       this.allCheckbox.checked = !remaining;
     },
+    addOne: function(todo) {
+      var view = new TodoView({model: todo});
+      this.$("#todo-list").append(view.render().el);
+    },
     createOnEnter: function (e) {
       if(e.keyCode == 13){
 
