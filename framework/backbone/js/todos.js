@@ -130,6 +130,9 @@ $(function () {
       var view = new TodoView({model: todo});
       this.$("#todo-list").append(view.render().el);
     },
+    addAll: function() {
+      Todos.each(this.addOne, this);
+    },
     createOnEnter: function (e) {
       if(e.keyCode == 13){
 
