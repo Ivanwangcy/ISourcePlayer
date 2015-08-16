@@ -49,7 +49,7 @@ $(function () {
     template: _.template($('#item-template').html()),
     events: {
       "click .toggle"  : "toggleDone",
-      "dbclick .view"  : "edit",
+      "dblclick .view"  : "edit",
       "click a.destroy": "clear",
       "keypress .edit" : "updateOnEnter",
       "blur .edit"     : "close"

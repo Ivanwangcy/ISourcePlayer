@@ -27,6 +27,9 @@
       </footer>
 
     </div>
+    <div id="instructions">
+      Double-click to edit a todo.
+    </div>
     <div id="credits">
       Created by Ivan
       <br>
@@ -45,7 +48,7 @@
     <script type="text/template" id="item-template">
       <div class="view">
         <input id="checkItem" class="toggle" type="checkbox" name="name" <%= done ? "checked" : "" %> />
-        <label for="checkItem"><%- title %></label>
+        <label><%- title %></label>
         <a class="destroy"></a>
       </div>
       <input class="edit" type="text" name="name" value="<%- title %>">
