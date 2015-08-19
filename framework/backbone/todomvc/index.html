@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Backbone.js todoMVC</title>
+    <link rel="stylesheet" href="../assets/base.css" media="screen" title="no title" charset="utf-8">
+  </head>
+  <body>
+
+    <!-- 应用程序HTML -->
+    <section>
+      <header>
+        <h1>Todos</h1>
+        <input id="new-todo" placeholder="What needs to do done?" autofocus>
+      </header>
+      <section id="main">
+        <input id="toggle-all" type="checkbox">
+        <label for="toggle-all">Mark all as complete</label>
+        <ul id="todo-list">
+        </ul>
+      </section>
+      <footer id="footer"></footer>
+    </section>
+    <footer id="info">
+      <p> Double-click to edit a todo </p>
+    </footer>
+
+    <!-- Template -->
+    <script type="text/template" id="item-template">
+      <div class="view">
+        <li>
+          <input class="toggle" type="checkbox" <%= completed ? 'checked' : '' %>>
+          <label><%- title %></label>
+          <button class="destroy"></button>
+        </li>
+        <input class="edit" value="<%- title %>">
+      </div>
+    </script>
+    <script type="text/template" id="stats-template">
+      <span id="todo-count">
+        <strong><%= remaining %></strong>
+        <%= remaining === 1 ? 'item' : 'items' %> left
+      </span>
+      <ul id="filter">
+        <li><a class="selected" href="#/">All</a></li>
+        <li><a href="#/active">Active</a></li>
+        <li><a href="#/completed">Completed</a></li>
+      </ul>
+      <% if(completed) { %>
+      <button id="clear-completed">Clear completed (<%= completed %>)</button>
+      <% } %>
+    </script>
+
+    <!-- lib files -->
+    <script src="../lib/zepto.js" charset="utf-8"></script>
+    <script src="../lib/underscore.js" charset="utf-8"></script>
+    <script src="../lib/backbone.js" charset="utf-8"></script>
+    <script src="../lib/backbone.localStorage.js" charset="utf-8"></script>
+
+    <!-- todo js files -->
+    <script src="js/models/todo.js" charset="utf-8"></script>
+    <script src="js/collections/todos.js" charset="utf-8"></script>
+    <script src="js/views/todos.js" charset="utf-8"></script>
+    <script src="js/views/app.js" charset="utf-8"></script>
+    <script src="js/routers/router.js" charset="utf-8"></script>
+    <script src="js/app.js" charset="utf-8"></script>
+
+  </body>
+</html>
