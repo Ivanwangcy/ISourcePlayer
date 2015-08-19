@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>model demo 2 </title>
+  </head>
+  <body>
+    <script src="lib/underscore.js" charset="utf-8"></script>
+    <script src="lib/zepto.js" charset="utf-8"></script>
+    <script src="lib/backbone.js" charset="utf-8"></script>
+    <script type="text/javascript">
+      var todo = Backbone.Model.extend({
+        defaults: {
+          title: '',
+          completed: false
+        },
+        initialize: function () {
+          console.log("This model has been initialized.");
+        }
+      });
+      var todo1 = new todo();
+      console.log(todo1.get('title'));
+      console.log(todo1.get('completed'));
+      console.log(JSON.stringify(todo1));
+      var todo2 = new todo({
+        title: "todo2 title",
+        completed: true
+      });
+      console.log(todo2.get('title'));
+      console.log(JSON.stringify(todo2));
+    </script>
+  </body>
+</html>
