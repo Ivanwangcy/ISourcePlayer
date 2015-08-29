@@ -1,15 +1,18 @@
 body {
   background-color: #ccffcc;
-  color: blue;
+  color: #0382AD;
   font-size: 1.5em;
+  /*box-sizing: border-box;*/
 }
 .wrapper {
   margin:10px;
 }
 
 span {
+  cursor: pointer;
   border: 1px solid #cccccc;
   font-weight: bold;
+  text-shadow:1px 2px 0 rgba(255,255,255,1),1px 1px 2px rgba(0,0,0,.3);
 }
 .content2 {
   clear: both;
@@ -25,7 +28,6 @@ span {
   height: 300px;
 }
 .image3{
-  display: inline-block;
   width: 500px;
   height: 300px;
 }
