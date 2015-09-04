@@ -1,0 +1,91 @@
+html, body, div, img, strong, nav ul, nav li, article, footer, header, menu{
+  margin: 0; padding: 0; border: 0; font-size: 100%; font: inherit; vertical-align: baseline;
+}
+article, footer, header, menu { display: block; text-align: center; }
+table{border-collapse: collapse; border-spacing: 0;}
+/* start editing from here */
+a{
+  text-decoration: none;
+  color: #ff6867;
+}
+a:active{
+  color: #80bfff;
+}
+clear{
+  clear: both;
+}
+img{
+  max-width: 100%;
+}
+body{
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #0d0d0d;
+}
+article{
+  font-size: 14px;
+  color: #7676876;
+}
+article, article.underline{
+  padding: 20px 10px;
+  margin-bottom: 0;
+}
+article img{
+  margin: 10px 0;
+  padding: 8px;
+  background: #2d2d2d;
+}
+
+/* header */
+header{
+  background: #161616;
+  border-bottom: 1px solid #1d1d1d;
+}
+header .vertical{
+  margin-bottom: 0;
+}
+.logo{
+  padding: 10px;
+  margin: 10px 0;
+}
+logo a, logo img{
+  text-align: center;
+}
+footer{
+  background: #000;
+  color: #565656;
+}
+footer p {
+  font-size: 12px;
+  line-height: 18px;
+  margin: 0;
+}
+copy{
+  padding: 10px;
+}
+copy a{
+  color: rgba(154, 228, 255, 0.8);
+}
+
+/* menu */
+.menu a {
+  background: #1d1d1d;
+  border-bottom: 1px solid #0d0d0d;
+  border-top: 1px solid #3d3d3d;
+  display: block;
+  padding: 15px;
+  color: #767676;
+  font-size: 12px;
+}
+.menu a:hover{
+  background-color: #2d2d2d;
+}
+header .menu{
+  border-bottom: 1px solid #2d2d2d;
+}
+header .menu a{
+  padding: 15px 15px 15px 25px;
+}
+
+header .menu li:last-child a{
+  border-bottom: none;
+}
