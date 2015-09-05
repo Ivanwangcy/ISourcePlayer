@@ -3,9 +3,9 @@
   <head>
     <meta charset="utf-8">
     <!-- View Port for display content on the center of screen -->
-    <meta name="viewport" content="width=device-width,target-densitydpi=high-dpi,initial-scale=1.0, minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
     <title>jQuery Mobile Example</title>
-    <link rel="stylesheet" href="jq_1.4.5/_assets/css/jq-demos.css" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="jq_1.4.5/_assets/css/jqm-demos.css" media="screen" title="no title" charset="utf-8">
     <link rel="stylesheet" href="jq_1.4.5/jquery.mobile-1.4.5.min.css" media="screen" title="no title" charset="utf-8">
     <script src="jq_1.4.5/jquery-1.11.3.min.js" charset="utf-8"></script>
     <script src="jq_1.4.5/_assets/js/index.js" charset="utf-8"></script>
@@ -28,6 +28,40 @@
     </script>
   </head>
   <body>
-
+    <div id="activity" data-role="page">
+      <!-- Including header -->
+      <div data-role="header">
+        <a href="#" class="ui-btn-left ui-btn ui-btn-inline ui-mini ui-cormer-all ui-btn-icon-left ui-icon-delete">Cancel</a>
+        <h1>My App</h1>
+        <button class="ui-btn-right ui-btn ui-btn-b ui-btn-inline ui-mini ui-corner-all ui-btn-icon-right ui-icon-check" name="button">Save</button>
+      </div>
+      <!-- Including grid navigation bar -->
+      <div data-role="navbar" class="nav-glyphish-example" data-grid="d">
+        <ul>
+          <li><a href="#" id="chat" data-icon="grid">&nbsp;</a></li>
+          <li><a href="#" id="email" data-icon="star">Favs</a></li>
+          <li><a href="#" id="skull" data-icon="gear">Setup</a></li>
+          <li><a href="#" id="beer" data-icon="custom">Chat</a></li>
+          <li><a href="#" id="coffee" data-icon="custom">Email</a></li>
+        </ul>
+      </div>
+      <div data-role="content">
+        <h3>Page content goes here.</h3>
+        <!-- Including form, with slider and flip toggle switch -->
+        <form>
+          <label for="slider-2">Slider:</label>
+          <input id="slider-2" name="slider-2" data-highlight="true" min="0" max="100" value="50" type="range">
+          <label for="flip-1">Flip toggle switch:</label>
+          <select id="flip-1" name="flip-1" data-role="slider">
+            <option value="off">Off</option>
+            <option value="on">On</option>
+          </select>
+        </form>
+      </div>
+      <!-- Including footer -->
+      <div data-role="footer">
+        <h4>Page Footer</h4>
+      </div><!-- /footer -->
+    </div>
   </body>
 </html>
