@@ -15,7 +15,6 @@
     <link rel="apple-touch-icon-precomposed" href="imgs/icon-152x152.png">
     <!-- Adding icon to app -->
     <link rel="stylesheet" type="text/css" href="addtohomescreen.css">
-    <script src="addtohomescreen.min.js"></script>
     <script type="text/javascript">
       var addToHomeConfig = {
         animationIn: "bubble",
@@ -26,9 +25,10 @@
         message: 'This is a custom message. Your device is an <strong> %device </strong>. The action icon is "%icon".'
       };
     </script>
+    <script src="addtohomescreen.min.js"></script>
   </head>
   <body>
-    <div id="activity" data-role="page">
+    <div id="activity" class="ui-page" data-role="page">
       <!-- Including header -->
       <div data-role="header">
         <a href="#" class="ui-btn-left ui-btn ui-btn-inline ui-mini ui-cormer-all ui-btn-icon-left ui-icon-delete">Cancel</a>
